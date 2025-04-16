@@ -16,22 +16,22 @@ def total_sales_transformation():
    total_sales = pd.read_csv(f"{dag_path}/data/raw/sales.csv")
    total_sales['date'] = pd.to_datetime(total_sales['date'])
    total_sales['total_sales'] = total_sales['quantity'] * total_sales['price']
-   total_sales.to_csv(f"{dag_path}/data/transformed/sales_transformed.csv", index=False)
+   total_sales.to_csv(f"{dag_path}/data/raw/sales_transformed.csv", index=False)
 
 # join sales and customer transformation function
 def join_sales_customer_transformation():
     sales = pd.read_csv(f"{dag_path}/data/raw/sales.csv")
     customer = pd.read_csv(f"{dag_path}/data/raw/customer.csv")
     sales_customer = pd.merge(sales, customer, on='customer_id', how='inner')
-    sales_customer.to_csv(f"{dag_path}/data/transformed/sales_customer_transformed.csv", index=False)   
+    sales_customer.to_csv(f"{dag_path}/data/raws/sales_customer_transformed.csv", index=False)   
     
 # load and save to database function
 def load_sales():
    conn = sqlite3.connect("/usr/local/airflow/db/salesanalytics.db")
-   total_sales_data = pd.read_csv(f"{dag_path}/data/transformed/sales_transformed.csv")
+   total_sales_data = pd.read_csv(f"{dag_path}/data/raw/sales_transformed.csv")
    total_sales_data.to_sql('total_sales', conn, if_exists='replace', index=False)
    
-   customers_sales_data = pd.read_csv(f"{dag_path}/data/transformed/sales_customer_transformed.csv")
+   customers_sales_data = pd.read_csv(f"{dag_path}/data/raw/sales_customer_transformed.csv")
    customers_sales_data.to_sql('customers_sales', conn, if_exists='replace', index=False)
    conn.close()
    

@@ -9,7 +9,7 @@ services:
       - "8080:8080"
     environment:
       - AIRFLOW__CORE__EXECUTOR=SequentialExecutor
-      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=sqlite:////usr/local/airflow/salesanalytics.db
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=sqlite:////usr/local/airflow/db/salesanalytics.db
       - AIRFLOW__CORE__LOAD_EXAMPLES=False
     restart: always
     volumes:
