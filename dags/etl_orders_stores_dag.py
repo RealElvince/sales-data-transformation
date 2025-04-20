@@ -16,7 +16,7 @@ def join_orders_salespersons():
     
     joined_orders_salespersons = pd.merge(orders,salespersons,left_on="salesperson_id", right_on="id", how="inner")
     
-    conn = sqlite3.connect(f"{dag_path}/db/orders.db")
+    conn = sqlite3.connect('/usr/local/airflow/db/salesanalytics.db')
     joined_orders_salespersons.to_sql('orders_salespersons', conn, if_exists='replace', index=False)
     conn.close()
 
@@ -31,7 +31,7 @@ def join_salespersons_stores():
     
     joined_salespersons_stores = pd.merge(salespersons,stores,left_on="id", right_on="salesperson_id", how="inner")
     
-    conn = sqlite3.connect(f"{dag_path}/db/stores.db")
+    conn = sqlite3.connect('/usr/local/airflow/db/salesanalytics.db')
     joined_salespersons_stores.to_sql('salespersons_stores', conn, if_exists='replace', index=False)
     conn.close()
     
