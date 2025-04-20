@@ -1,0 +1,13 @@
+id,name,location,salesperson_id
+1,SuperMart,Nairobi,2
+2,QuickShop,Mombasa,3
+3,BudgetStore,Kisumu,1
+4,FreshMart,Nairobi,2
+5,ValueMart,Mombasa,3
+6,ShopSmart,Kisumu,1
+7,DailyNeeds,Nairobi,2
+8,CityMarket,Mombasa,3
+9,LocalStore,Kisumu,1
+10,MetroMart,Nairobi,2
+11,BestBuy,Mombasa,3
+12,SmartShop,Kisumu,1
